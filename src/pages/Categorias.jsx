@@ -32,7 +32,7 @@ export const Categorias = () => {
 
   return (
     <main className="bg-[url('../../public/FondoPrincipal.png')] bg-cover bg-center bg-fixed min-h-screen">
-      <Header></Header>
+      <Header/>
       <section className="container m-auto flex flex-wrap justify-center gap-5 mt-3.5">
         <CartaCrearNoticia />
         {noticias.map((noticia) => (

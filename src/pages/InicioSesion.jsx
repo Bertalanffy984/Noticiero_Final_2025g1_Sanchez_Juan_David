@@ -4,6 +4,8 @@ import {auth} from "../firebase/config";
 import { useNavigate } from "react-router-dom";
 
 const InicioSesion = () => {
+
+
   const navigate = useNavigate()
   const irRegistro=()=>{
     navigate('/registro')
@@ -12,7 +14,7 @@ const InicioSesion = () => {
     e.preventDefault();
     const correo = e.target.elements.email.value;
     const contrasenia = e.target.elements.password.value;
-    signInWithEmailAndPassword(auth,correo,contrasenia).then(navigate('/categorias'))
+    signInWithEmailAndPassword(auth,correo,contrasenia).then(navigate("/categorias/Comedia"))
   };
   return (
     <section className="bg-gray-100 min-h-screen flex items-center justify-center">
