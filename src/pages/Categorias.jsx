@@ -6,9 +6,8 @@ import { collection, query, where, onSnapshot } from "firebase/firestore";
 import db from "../firebase/config";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-export const Categorias = () => {
+export const Categorias = ({ usuario }) => {
   const [noticias, setNoticias] = useState([]);
   const { nombreCategoria } = useParams();
 
@@ -30,12 +29,29 @@ export const Categorias = () => {
     return () => unsubscribe();
   }, [nombreCategoria]);
 
+
+  let cartaAgregar
+
+  if (usuario?.rol === "Reportero") {
+    cartaAgregar = (
+      <CartaCrearNoticia />
+    )
+  }
+
+  let noticiasFiltradas=[];
+  if (usuario?.rol === "Editor") {
+    noticiasFiltradas = noticias.filter((noticia) => noticia.estado === "Terminado")
+  } else if (usuario?.rol === "Reportero") {
+    noticiasFiltradas = noticias
+  } else {
+    noticiasFiltradas = noticias.filter((noticia) => noticia.estado === "Publicado")
+  }
   return (
     <main className="bg-[url('../../public/FondoPrincipal.png')] bg-cover bg-center bg-fixed min-h-screen">
-      <Header/>
+      <Header usuario={usuario} />
       <section className="container m-auto flex flex-wrap justify-center gap-5 mt-3.5">
-        <CartaCrearNoticia />
-        {noticias.map((noticia) => (
+        {cartaAgregar}
+        {noticiasFiltradas.map((noticia) => (
           <Noticia
             key={noticia.id}
             noticia={noticia}

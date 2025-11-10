@@ -1,5 +1,5 @@
 import React from "react";
-import { collection, addDoc, query, where, onSnapshot  } from "firebase/firestore";
+import { collection, addDoc, query, where, onSnapshot, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { auth } from "../../firebase/config";
 import { signOut } from "firebase/auth";
@@ -7,20 +7,19 @@ import { useNavigate } from "react-router-dom";
 import db from "../../firebase/config";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import IconButton from "@mui/material/IconButton";
-import { doc, deleteDoc } from "firebase/firestore";
 import Stack from "@mui/material/Stack";
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
-const Header = () => {
+const Header = ({ usuario }) => {
   return (
     <header className="bg-white shadow-lg py-2  sticky top-0 z-50 h-[15dvh]">
-      <Categorias />
+      <Categorias usuario={usuario} />
     </header>
   );
 };
 
 export default Header;
 
-const Categorias = () => {
+const Categorias = ({ usuario }) => {
   const navigate = useNavigate();
   const [categorias, setCategorias] = useState([]);
   useEffect(() => {
@@ -34,6 +33,12 @@ const Categorias = () => {
 
     return () => unsubscribe();
   }, []);
+  let entradaCategoria;
+  if (usuario && usuario.rol === "Reportero") {
+    entradaCategoria = (
+      <EntradaCategoria />
+    )
+  }
 
   return (
     <div className="mx-auto flex flex-col items-center justify-between px-4 h-full">
@@ -41,13 +46,14 @@ const Categorias = () => {
         <ul className="flex space-x-8">
           {categorias.map((cat) => (
             <li className="text-center" key={cat.id}>
-              <CategoriaLi cat={cat} />
+              <CategoriaLi usuario={usuario} cat={cat} />
             </li>
           ))}
         </ul>
       </nav>
       <div className=" w-full flex justify-between">
-        <EntradaCategoria />
+
+        {entradaCategoria}
         <button
           onClick={() => {
             signOut(auth);
@@ -62,21 +68,39 @@ const Categorias = () => {
   );
 };
 
-const CategoriaLi = ({ cat }) => {
+const CategoriaLi = ({ cat, usuario }) => {
   const navigate = useNavigate();
 
-  const ref = doc(db, "categoria", cat.id);
-  // const ref2=doc(db,"Noticia")
+  const refCategoria = doc(db, "categoria", cat.id);
+
   async function deleteHandler(e) {
     e.preventDefault();
-    await deleteDoc(ref).then(
-      query(
-        collection(db, "Noticia"),
-        where("categoria", "==", cat.nombre_categoria)
-      )
-    );
-  }
 
+    const noticiasQuery = query(
+      collection(db, "Noticia"),
+      where("categoria", "==", cat.nombre_categoria)
+    );
+
+    const snapshot = await getDocs(noticiasQuery);
+
+    const deletePromises = snapshot.docs.map((docSnap) =>
+      deleteDoc(doc(db, "Noticia", docSnap.id))
+    );
+
+    await Promise.all(deletePromises);
+
+    await deleteDoc(refCategoria);
+
+  }
+  let iconoEliminar
+
+  if (usuario && usuario.rol === "Reportero") {
+    iconoEliminar = (
+      <IconButton onClick={(e) => deleteHandler(e)} aria-label="delete">
+        <DeleteOutlineIcon/>
+      </IconButton>
+    )
+  }
   return (
     <>
       <button
@@ -85,9 +109,7 @@ const CategoriaLi = ({ cat }) => {
       >
         {cat.nombre_categoria}
       </button>
-      <IconButton onClick={(e) => deleteHandler(e)} aria-label="delete">
-        <DeleteOutlineIcon />
-      </IconButton>
+      {iconoEliminar}
     </>
   );
 };

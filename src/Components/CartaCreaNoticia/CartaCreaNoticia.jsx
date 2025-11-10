@@ -163,7 +163,7 @@ export const FormularioActualizarNoticia = ({
               type="url"
               required
               placeholder="https://img.com"
-              // value={noticia.ulr_img}
+              value={noticia.ulr_img}
               onChange={handleChange}
             />
           </div>

@@ -60,7 +60,6 @@ const Noticia = ({ noticia }) => {
             rol: rol,
           };
           setUsuario(userData);
-          // console.log(usuario.email)
         });
       }
     });
@@ -81,10 +80,8 @@ const Noticia = ({ noticia }) => {
   return (
     <Card
       sx={{
-        maxWidth: 345,
-        minWidth: 345,
-        minHeight: 500,
-        maxHeight: 700,
+        width: 345,
+        height: 700,
         backgroundColor: "rgba(255, 255, 255, 0.2)",
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(10px)",
@@ -125,13 +122,12 @@ const Noticia = ({ noticia }) => {
               </div>
             }
           />
-          <CardMedia
-            component="img"
-            height="10"
-            image={noticia.ulr_img}
-            alt={noticia.titulo}
-            sx={{ padding: 2, borderRadius: 5 }}
-          />
+            <CardMedia
+              component="img"
+              image={noticia.ulr_img}
+              alt={noticia.titulo}
+              sx={{ padding: 2, borderRadius: 5, height: 230, width: 230, margin: "auto" }}
+            />
           <CardContent>
             <Typography variant="h6" sx={{ color: "text.secondary", textAlign: "center" }}>
               {noticia.titulo}
@@ -150,7 +146,7 @@ const Noticia = ({ noticia }) => {
           handleChange={handleChange}
           noticia={datosFormulario}
           usuario={usuario}
-          setEdicion={()=>setEdicion(true)}
+          setEdicion={() => setEdicion(true)}
         />
       )}
     </Card>

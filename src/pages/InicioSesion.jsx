@@ -1,20 +1,23 @@
 import React from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import {auth} from "../firebase/config";
+import { auth } from "../firebase/config";
 import { useNavigate } from "react-router-dom";
 
 const InicioSesion = () => {
 
 
   const navigate = useNavigate()
-  const irRegistro=()=>{
+  const irRegistro = () => {
     navigate('/registro')
   }
-    const submitHandler = (e) => {
+  const irCategorias = () => {
+    navigate('/categorias/comedia')
+  }
+  const submitHandler = (e) => {
     e.preventDefault();
     const correo = e.target.elements.email.value;
     const contrasenia = e.target.elements.password.value;
-    signInWithEmailAndPassword(auth,correo,contrasenia).then(navigate("/categorias/Comedia"))
+    signInWithEmailAndPassword(auth, correo, contrasenia).then(navigate("/categorias/Comedia"))
   };
   return (
     <section className="bg-gray-100 min-h-screen flex items-center justify-center">
@@ -23,14 +26,19 @@ const InicioSesion = () => {
           <h1 className="text-2xl font-bold text-gray-800">Bienvenido</h1>
           <p className="text-gray-600">Por favor ingrese sus credenciales</p>
         </div>
-        <Formulario submitHandler={submitHandler} contrasenia={'contraseña'}/>
+        <Formulario submitHandler={submitHandler} contrasenia={'contraseña'} />
         <div className="mt-6 flex justify-evenly">
           <p className="mt-6 text-center text-sm text-gray-600">
             No tiene una cuenta?
           </p>
-            <button onClick={irRegistro} className="font-medium text-blue-600 mt-6 hover:text-blue-500 transition-all duration-100 hover:scale-120">
-              Registrate ahora
-            </button>
+          <button onClick={irRegistro} className="font-medium text-blue-600 mt-6 hover:text-blue-500 transition-all duration-100 hover:scale-110">
+            Registrate ahora
+          </button>
+        </div>
+        <div className="border-2 flex justify-center">
+          <button onClick={irCategorias} className="font-medium text-blue-600 mt-6 hover:text-blue-500 transition-all duration-100 hover:scale-110">
+            Ingresar como invitado
+          </button>
         </div>
       </div>
     </section>
@@ -39,10 +47,10 @@ const InicioSesion = () => {
 
 export default InicioSesion;
 
-export const Formulario = ({children,submitHandler,contrasenia}) => {
+export const Formulario = ({ children, submitHandler, contrasenia }) => {
   return (
     <form className="space-y-6"
-    onSubmit={submitHandler}>
+      onSubmit={submitHandler}>
       <div>
         <label for="email" className="block text-sm font-medium text-gray-700 mb-1">
           Correo electronico
