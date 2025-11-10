@@ -40,9 +40,9 @@ export const Categorias = ({ usuario }) => {
 
   let noticiasFiltradas=[];
   if (usuario?.rol === "Editor") {
-    noticiasFiltradas = noticias.filter((noticia) => noticia.estado === "Terminado")
+    noticiasFiltradas = noticias.filter((noticia) => noticia.estado === "Terminado"||noticia.estado === "Desactivado"||noticia.estado === "Publicado")
   } else if (usuario?.rol === "Reportero") {
-    noticiasFiltradas = noticias
+    noticiasFiltradas = noticias.filter((noticia) => noticia.estado === "Edición"||noticia.estado === "Terminado")
   } else {
     noticiasFiltradas = noticias.filter((noticia) => noticia.estado === "Publicado")
   }

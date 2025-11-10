@@ -42,10 +42,13 @@ const Categorias = ({ usuario }) => {
 
   return (
     <div className="mx-auto flex flex-col items-center justify-between px-4 h-full">
-      <nav className="flex items-center space-x-8 m-auto">
-        <ul className="flex space-x-8">
+      <nav className="w-full overflow-x-auto scroll-smooth scrollbar-hide flex justify-center">
+        <ul className="flex space-x-4 px-2 py-2 w-max">
           {categorias.map((cat) => (
-            <li className="text-center" key={cat.id}>
+            <li
+              key={cat.id}
+              className="min-w-[150px] shrink-0 text-center bg-blue-100 rounded-md p-2 shadow hover:bg-blue-200 transition"
+            >
               <CategoriaLi usuario={usuario} cat={cat} />
             </li>
           ))}
@@ -59,7 +62,8 @@ const Categorias = ({ usuario }) => {
             signOut(auth);
             navigate("/");
           }}
-          className="px-3 border-transparent rounded-md shadow-sm text-center font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150"
+          className="px-3 border-transparent rounded-md shadow-sm text-center font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150
+          text-xs"
         >
           CERRAR SESION
         </button>
@@ -96,8 +100,8 @@ const CategoriaLi = ({ cat, usuario }) => {
 
   if (usuario && usuario.rol === "Reportero") {
     iconoEliminar = (
-      <IconButton onClick={(e) => deleteHandler(e)} aria-label="delete">
-        <DeleteOutlineIcon/>
+      <IconButton >
+        <DeleteOutlineIcon onClick={(e) => deleteHandler(e)} aria-label="delete" />
       </IconButton>
     )
   }
@@ -134,7 +138,7 @@ const EntradaCategoria = () => {
           id="categoria"
           name="categoria"
           required
-          className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="px-4 py-2 border w-30 sm:text-sm sm:w-xs text-xs  border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Agregar categoria"
         />
       </div>

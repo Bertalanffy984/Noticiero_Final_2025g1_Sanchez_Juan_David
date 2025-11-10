@@ -115,7 +115,7 @@ export const FormularioActualizarNoticia = ({
       {usuario.rol === "Reportero" ? (
         <>
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Titulo</label>
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="titulo">Titulo</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               id="titulo"
@@ -128,7 +128,7 @@ export const FormularioActualizarNoticia = ({
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Sub-titulo</label>
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="subTitulo">Sub-titulo</label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               id="subTitulo"
@@ -141,7 +141,7 @@ export const FormularioActualizarNoticia = ({
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">Contenido</label>
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="contenido">Contenido</label>
             <textarea
               className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline resize-none overflow-y-auto"
               id="contenido"
@@ -154,7 +154,7 @@ export const FormularioActualizarNoticia = ({
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="url_img">
               Url imagen de noticia
             </label>
             <input
@@ -184,7 +184,7 @@ export const FormularioActualizarNoticia = ({
 const SelectorEstadoNoticia = ({ handleChange, usuario }) => {
   return (
     <div className="mb-4">
-      <label className="block text-gray-700 font-bold mb-2">
+      <label className="block text-gray-700 font-bold mb-2" htmlFor="estado">
         Estado Noticia
       </label>
       <select
@@ -221,7 +221,7 @@ export const FormularioCrearNoticia = ({ submitHandler,setContenido }) => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Titulo</label>
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="titulo">Titulo</label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           id="titulo"
@@ -232,7 +232,7 @@ export const FormularioCrearNoticia = ({ submitHandler,setContenido }) => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Sub-titulo</label>
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="subTitulo">Sub-titulo</label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
           id="subTitulo"
@@ -243,7 +243,7 @@ export const FormularioCrearNoticia = ({ submitHandler,setContenido }) => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Contenido</label>
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="contenido">Contenido</label>
         <textarea
           className="shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline resize-none overflow-y-auto"
           id="contenido"
@@ -254,7 +254,7 @@ export const FormularioCrearNoticia = ({ submitHandler,setContenido }) => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
+        <label  className="block text-gray-700 font-bold mb-2" htmlFor="urlImg">
           Url imagen de noticia
         </label>
         <input
@@ -267,7 +267,7 @@ export const FormularioCrearNoticia = ({ submitHandler,setContenido }) => {
       </div>
 
       <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
+        <label className="block text-gray-700 font-bold mb-2" htmlFor="estado">
           Estado Noticia
         </label>
         <select

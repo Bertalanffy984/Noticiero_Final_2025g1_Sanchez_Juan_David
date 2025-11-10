@@ -35,7 +35,7 @@ const InicioSesion = () => {
             Registrate ahora
           </button>
         </div>
-        <div className="border-2 flex justify-center">
+        <div className="flex justify-center">
           <button onClick={irCategorias} className="font-medium text-blue-600 mt-6 hover:text-blue-500 transition-all duration-100 hover:scale-110">
             Ingresar como invitado
           </button>

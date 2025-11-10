@@ -24,18 +24,19 @@ const Noticia = ({ noticia }) => {
 
   const handleChange = (e) => {
     const { id, value } = e.target;
+    console.log(e.target.value)
     setDatosFormulario((prev) => ({
       ...prev,
       [id]: value,
     }));
   };
   const ref = doc(db, "Noticia", datosFormulario.id);
-  console.log(datosFormulario)
   async function submitHandler(e) {
     e.preventDefault();
     const { id, ...camposActualizados } = datosFormulario;
-    await updateDoc(ref, camposActualizados);
     console.log(id)
+    await updateDoc(ref, camposActualizados);
+
   }
   //logica para eliminar
   async function deleteHandler(e) {
@@ -68,11 +69,9 @@ const Noticia = ({ noticia }) => {
   let iconoEliminar;
   if (usuario.rol === "Reportero") {
     iconoEliminar = (
-      <IconButton
-        onClick={(e) => deleteHandler(e)}
-        aria-label="delete"
-      >
-        <DeleteOutlineIcon />
+      <IconButton>
+        <DeleteOutlineIcon onClick={(e) => deleteHandler(e)}
+          aria-label="delete" />
       </IconButton>
     )
   }
@@ -98,8 +97,8 @@ const Noticia = ({ noticia }) => {
             }
             action={
               <Stack direction="column" sx={{ ml: 1 }}>
-                <IconButton onClick={() => setEdicion(false)} aria-label="edit">
-                  <IconoEdicion />
+                <IconButton>
+                  <IconoEdicion onClick={() => setEdicion(false)} aria-label="edit" />
                 </IconButton>
                 {iconoEliminar}
               </Stack>
@@ -122,12 +121,12 @@ const Noticia = ({ noticia }) => {
               </div>
             }
           />
-            <CardMedia
-              component="img"
-              image={noticia.ulr_img}
-              alt={noticia.titulo}
-              sx={{ padding: 2, borderRadius: 5, height: 230, width: 230, margin: "auto" }}
-            />
+          <CardMedia
+            component="img"
+            image={noticia.ulr_img}
+            alt={noticia.titulo}
+            sx={{ padding: 2, borderRadius: 5, height: 230, width: 230, margin: "auto" }}
+          />
           <CardContent>
             <Typography variant="h6" sx={{ color: "text.secondary", textAlign: "center" }}>
               {noticia.titulo}
