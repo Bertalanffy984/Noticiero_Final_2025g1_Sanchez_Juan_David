@@ -1,5 +1,6 @@
 {
   "name": "noticiero-final",
+  "homepage": "https://Mandypick.github.io/Noticiero_Final_2025g1_Sanchez_Juan_David/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d dist"
+    
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,6 +23,7 @@
     "@supabase/supabase-js": "^2.78.0",
     "@tailwindcss/vite": "^4.1.16",
     "firebase": "^12.5.0",
+    "gh-pages": "^6.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.9.5",

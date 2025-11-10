@@ -4,6 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),tailwindcss()],
+  plugins: [react(),tailwindcss()],
+  base: "/Noticiero_Final_2025g1_Sanchez_Juan_David"
 })
