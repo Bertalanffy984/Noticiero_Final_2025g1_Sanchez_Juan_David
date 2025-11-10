@@ -1,8 +1,8 @@
 {
   "name": "noticiero-final",
-  "homepage": "https://kBertalanffy984.github.io/Noticiero_Final_2025g1_Sanchez_Juan_David/",
+  "homepage": "https://Bertalanffy984.github.io/Noticiero_Final_2025g1_Sanchez_Juan_David/",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
